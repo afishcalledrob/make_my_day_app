@@ -3,9 +3,13 @@ language: ruby
 rvm:
   - 2.4.0
 
+deploy:
+  provider: heroku
+  api_key: ...
+  app: make_my_day_app
+
 script:
   -bundle
-  -bin/rails db:drop
   -bin/rails db:create
   -bin/rails db:migrate
   -bundle exec rspec spec
