@@ -1,14 +1,18 @@
 language: ruby
-
 rvm:
-  - 2.4.0
-
+- 2.4.0
 env:
- - DB=postgresql
+- DB=postgresql
 script:
- - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec spec/
+- RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec spec/
 before_script:
- - mysql -e 'create database mydb_test'
-bundler_args: --binstubs=./bundler_stubs
+- mysql -e 'create database mydb_test'
+bundler_args: "--binstubs=./bundler_stubs"
+deploy:
+  provider: heroku
+  api_key: c0c284af-d2bd-49ba-bc4a-98a2d4ae0e64
+  app: tranquil-thicket-51917
+  on:
+    repo: afishcalledrob/make_my_day_app
